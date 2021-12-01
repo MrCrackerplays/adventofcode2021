@@ -6,7 +6,7 @@
 /*   By: pdruart <pdruart@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/01 12:08:38 by pdruart       #+#    #+#                 */
-/*   Updated: 2021/12/01 12:31:35 by pdruart       ########   odam.nl         */
+/*   Updated: 2021/12/01 12:46:39 by pdruart       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,6 @@ int	main(int argc, char **argv)
 		return (2);
 	ft_putnbr_fd(count_ups(arr), 1);
 	clean_arr(&arr);
+	ft_putchar_fd('\n', 1);
 	return (0);
 }

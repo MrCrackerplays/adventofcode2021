@@ -1,26 +1,30 @@
-NAME := puzzle1.out
+ONE := puzzle1.out
+TWO := puzzle2.out
+
+NAME := $(ONE) $(TWO)
 
 CFLAGS ?= -Wall -Werror -Wextra
 ifdef DEBUG
 CFLAGS := -g $(CFLAGS)
 endif
-OBJECTS := main.o
-OBJECTS := $(addprefix obj/,$(OBJECTS))
+OBJECTS_ONE := main_one.o
+OBJECTS_ONE := $(addprefix obj/,$(OBJECTS_ONE))
+OBJECTS_TWO := main_two.o
+OBJECTS_TWO := $(addprefix obj/,$(OBJECTS_TWO))
 INCLUDE := headers libft
 INCLUDE := $(addprefix -I,$(INCLUDE))
 HEADER_FILES := 
 HEADER_FILES := $(addprefix headers/,$(HEADER_FILES))
 
-PHIL_COUNT ?= 2
-DIE_TIME ?= 310
-EAT_TIME ?= 200
-SLEEP_TIME ?= 200
-
 all: $(NAME)
 
-$(NAME): $(OBJECTS)
+$(ONE): $(OBJECTS_ONE)
 	$(MAKE) bonus -C ./libft
-	$(CC) $(CFLAGS) $(OBJECTS) libft/libft.a -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJECTS_ONE) libft/libft.a -o $(ONE)
+
+$(TWO): $(OBJECTS_TWO)
+	$(MAKE) bonus -C ./libft
+	$(CC) $(CFLAGS) $(OBJECTS_TWO) libft/libft.a -o $(TWO)
 
 obj/%.o: src/%.c $(HEADER_FILES)
 	@mkdir -p obj
@@ -28,7 +32,8 @@ obj/%.o: src/%.c $(HEADER_FILES)
 
 clean:
 	$(MAKE) clean -C ./libft
-	rm -f $(OBJECTS)
+	rm -f $(OBJECTS_ONE)
+	rm -f $(OBJECTS_TWO)
 	@rm -rf obj
 
 fclean: clean
@@ -40,7 +45,8 @@ re: fclean all
 bonus: all
 
 run: all
-	./$(NAME) "$(cat input)"
+	./$(ONE) "`cat input`"
+	./$(TWO) "`cat input`"
 
 debug:
 	$(MAKE) DEBUG=1
