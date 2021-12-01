@@ -6,7 +6,7 @@
 /*   By: pdruart <pdruart@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/01 12:08:38 by pdruart       #+#    #+#                 */
-/*   Updated: 2021/12/01 12:26:12 by pdruart       ########   odam.nl         */
+/*   Updated: 2021/12/01 12:31:35 by pdruart       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,14 @@ int	count_ups(char **arr)
 int	main(int argc, char **argv)
 {
 	char	**arr;
+	char	separator;
 
-	if (argc != 2)
+	if (argc < 2 || argc > 3)
 		return (1);
-	arr = ft_split(argv[1], '\n');
+	separator = '\n';
+	if (argc == 3)
+		separator = argv[2][0];
+	arr = ft_split(argv[1], separator);
 	if (arr == NULL)
 		return (2);
 	ft_putnbr_fd(count_ups(arr), 1);
