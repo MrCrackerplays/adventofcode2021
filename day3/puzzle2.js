@@ -13,11 +13,6 @@ const rl = readline.createInterface({
 	crlfDelay: Infinity
 });
 
-//https://stackoverflow.com/a/16155417
-function dec2bin(dec) {
-	return (dec >>> 0).toString(2);
-}
-
 function get_life_support_rating(oxygen_generator_rating, co_scrubber_rating) {
 	return (oxygen_generator_rating * co_scrubber_rating);
 }
