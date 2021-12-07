@@ -38,8 +38,8 @@ function count_danger_positions()
 	local count = 0
 	for y,values in pairs(danger_positions) do
 		for x, amount in pairs(values) do
+			print(x .. " " .. y .. " = " .. amount)
 			if amount > 1 then
-				print(x .. " " .. y .. " = " .. amount)
 				count = count + 1
 			end
 		end
@@ -63,11 +63,23 @@ function walk_line(x1, y1, x2, y2)
 		for i=math.min(y1,y2),math.max(y1,y2) do
 			for j=math.min(x1,x2),math.max(x1,x2) do
 				add_position(j, i)
+				print("straight x:" .. j .. " y:" .. i)
 			end
 		end
 	else
-		for i=0,math.max(y1,y2) - math.min(y1,y2) do
-			add_position(math.min(x1,x2) + i, math.min(y1,y2) + i)
+		x_start = math.min(x1,x2)
+		y_start = y1
+		y_dir = 1
+		if y1 > y2 then
+			y_dir = -1
+		end
+		if x_start ~= x1 then
+			y_start = y2
+			y_dir = -1 * y_dir;
+		end
+		for i=0,math.max(x1,x2) - math.min(x1,x2) do
+			print("diagonal x:" ..  x_start + i .. " y:" .. y_start + (y_dir * i))
+			add_position(x_start + i, y_start + (y_dir * i))
 		end
 	end
 end
