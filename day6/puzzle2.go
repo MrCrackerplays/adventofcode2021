@@ -21,7 +21,7 @@ func AizuArray(A string) []uint64 {
 	return b
 }
 
-const days = 80
+const days = 256
 
 func breed(schools [9]uint64) [9]uint64{
 	bred := schools[0]
