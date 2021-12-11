@@ -5,4 +5,4 @@ run:
 	lua $(ONE)
 	lua $(TWO)
 
-.PHONY: run clean
+.PHONY: run

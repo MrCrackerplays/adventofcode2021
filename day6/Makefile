@@ -5,4 +5,4 @@ run:
 	go run $(ONE)
 	go run $(TWO)
 
-.PHONY: run clean
+.PHONY: run
